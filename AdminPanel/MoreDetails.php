@@ -285,28 +285,35 @@ $row = $result->fetch_assoc();
                       <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="profile-tab2">
                         <form method="post" class="needs-validation">
                           <div class="card-header">
-                            <h4>Edit Summations</h4>
+                            <h4>Edit Submition</h4>
                           </div>
                           <div class="card-body">
                             <div class="row">
                               <div class="form-group col-md-6 col-12">
                                 <label>Id Number</label>
-                                <input type="text" class="form-control" value="<?php echo $row['IdNumber']; ?>">
+                                <input type="text" class="form-control" name="ID_Number" value="<?php echo $row['IdNumber']; ?>">
                                 <div class="invalid-feedback">
                                   Please fill in the Id Number
                                 </div>
                               </div>
                               <div class="form-group col-md-6 col-12">
                                 <label>Weight</label>
-                                <input type="text" class="form-control" value="<?php echo $row['weight']; ?>">
+                                <input type="text" class="form-control" name="weight" value="<?php echo $row['weight']; ?>">
                                 <div class="invalid-feedback">
                                   Please fill in the Weight
                                 </div>
                               </div>
 
+                              <input type="hidden" class="form-control" name="date" value="<?php echo $row['compteled_date']; ?>">
+                              <input type="hidden" class="form-control" name="time" value="<?php echo $row['completedTime']; ?>">
+                              <input type="hidden" class="form-control" name="taskId" value="<?php echo $row['taskID']; ?>">
+                                
+
+
+
                               <div class="form-group col-md-6 col-12">
                                 <label>ID Image</label>
-                                <input type="file" class="form-control" >
+                                <input type="file" class="form-control" name="jewelry" >
                                 <div class="invalid-feedback">
                                   Please fill in the ID Image
                                 </div>
@@ -314,7 +321,7 @@ $row = $result->fetch_assoc();
 
                               <div class="form-group col-md-6 col-12">
                                 <label>Jewelry Image</label>
-                                <input type="file" class="form-control" >
+                                <input type="file" class="form-control" name="id_image" >
                                 <div class="invalid-feedback">
                                   Please fill in the Jewelry Imag
                                 </div>
@@ -322,7 +329,7 @@ $row = $result->fetch_assoc();
 
                               <div class="form-group col-md-6 col-12">
                                 <label>Recept Image</label>
-                                <input type="file" class="form-control" >
+                                <input type="file" class="form-control" name="recipt_image" >
                                 <div class="invalid-feedback">
                                   Please fill in the Recept Image
                                 </div>
