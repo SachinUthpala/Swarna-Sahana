@@ -306,7 +306,7 @@ $n = 1;
 
                             >
                                 <form action="" method="post">
-                                    <input type="hidden" name="delete_id" value="<?php echo $rows['UserId']; ?>">
+                                    <input type="hidden" name="delete_id" value="<?php echo $rows['task_id']; ?>">
                                     <button type="submit" name="delete" class="btn btn-danger">Delete</button>
                                </form>
                             </td>
@@ -323,7 +323,7 @@ $n = 1;
 
                             >
                                 <form action="" method="post">
-                                    <input type="hidden" name="delete_id" value="<?php echo $rows['UserId']; ?>">
+                                    <input type="hidden" name="delete_id" value="<?php echo $rows['task_id']; ?>">
                                     <button type="submit" name="delete" class="btn btn-danger" disabled>Delete</button>
                                </form>
                             </td>
@@ -484,19 +484,19 @@ $n = 1;
 
   <?php
 
-if($_SESSION['userDeleted'] == 1){
+if($_SESSION['taskDeleted'] == 1){
     echo '<script>
             Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "User Deleted Sucessfully",
+            title: "Task Deleted Sucessfully",
             showConfirmButton: false,
             timer: 1500
             });
 
         </script>' ;
 
-        $_SESSION['userDeleted'] = null;
+        $_SESSION['taskDeleted'] = null;
 }
 
 
