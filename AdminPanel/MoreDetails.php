@@ -283,7 +283,7 @@ $row = $result->fetch_assoc();
                       </div>
 
                       <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="profile-tab2">
-                        <form method="post" class="needs-validation">
+                        <form action="" enctype="multipart/form-data" method="post" class="needs-validation">
                           <div class="card-header">
                             <h4>Edit Submition</h4>
                           </div>
