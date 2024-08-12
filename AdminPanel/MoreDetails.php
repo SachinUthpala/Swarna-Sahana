@@ -10,6 +10,16 @@ if(!$_SESSION['UserName'] && !$_SESSION['UserId']){
 }
 
 
+if(isset($_POST['task_id'])){
+  $taskId = (int)$_POST['task_id'];
+}
+
+
+$sql = "SELECT * FROM `complete_task` WHERE taskID = $taskId";
+
+$result = mysqli_query($conn, $sql); 
+
+$row = $result->fetch_assoc();
 
 ?>
 
@@ -158,7 +168,7 @@ if(!$_SESSION['UserName'] && !$_SESSION['UserId']){
       <div class="main-content">
         <section class="section">
             
-          <div class="row ">
+          <div class="row">
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <div class="card">
                 <div class="card-statistic-4">
@@ -208,6 +218,148 @@ if(!$_SESSION['UserName'] && !$_SESSION['UserId']){
             </div>
 
             
+
+          </div>
+
+          
+          <div class="row">
+
+          <div class="col-12 col-md-12 col-lg-8">
+                <div class="card">
+                  <div class="padding-20">
+                    <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="home-tab2" data-toggle="tab" href="#about" role="tab"
+                          aria-selected="true">More Details</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#settings" role="tab"
+                          aria-selected="false">Update</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content tab-bordered" id="myTab3Content">
+                      <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab2">
+                        <div class="row">
+                          <div class="col-md-3 col-6 b-r">
+                            <strong>ID Number</strong>
+                            <br>
+                            <p class="text-muted"><?php echo $row['IdNumber']; ?></p>
+                          </div>
+                          <div class="col-md-3 col-6 b-r">
+                            <strong>Weight</strong>
+                            <br>
+                            <p class="text-muted"><?php echo $row['weight']; ?></p>
+                          </div>
+                          <div class="col-md-3 col-6 b-r">
+                            <strong>Completed Date</strong>
+                            <br>
+                            <p class="text-muted"><?php echo $row['compteled_date']; ?></p>
+                          </div>
+                          <div class="col-md-3 col-6">
+                            <strong>Completed Time</strong>
+                            <br>
+                            <p class="text-muted"><?php echo $row['completedTime']; ?></p>
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-5 col-6">
+                                <div class="section-title">Jewelry Photo</div>
+                                <img alt="image" src="<?php echo '../'.$row['jewelryImg']; ?>" class="author-box-picture" width="200px" height="150px">
+                            </div>
+
+                            <div class="col-md-5 col-6">
+                                <div class="section-title">ID Photo</div>
+                                <img alt="image" src="<?php echo '../'.$row['Id_image']; ?>" class="author-box-picture" width="200px" height="150px">
+                            </div>
+
+                            <div class="col-md-3 col-6">
+                                <div class="section-title">Recept Photo</div>
+                                <img alt="image" src="<?php echo '../'.$row['receipt_img']; ?>" class="author-box-picture" width="200px" height="150px">
+                            </div>`
+
+                        </div>
+
+                      </div>
+
+                      <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="profile-tab2">
+                        <form method="post" class="needs-validation">
+                          <div class="card-header">
+                            <h4>Edit Summations</h4>
+                          </div>
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="form-group col-md-6 col-12">
+                                <label>Id Number</label>
+                                <input type="text" class="form-control" value="<?php echo $row['IdNumber']; ?>">
+                                <div class="invalid-feedback">
+                                  Please fill in the Id Number
+                                </div>
+                              </div>
+                              <div class="form-group col-md-6 col-12">
+                                <label>Weight</label>
+                                <input type="text" class="form-control" value="<?php echo $row['weight']; ?>">
+                                <div class="invalid-feedback">
+                                  Please fill in the Weight
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-6 col-12">
+                                <label>ID Image</label>
+                                <input type="file" class="form-control" >
+                                <div class="invalid-feedback">
+                                  Please fill in the ID Image
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-6 col-12">
+                                <label>Jewelry Image</label>
+                                <input type="file" class="form-control" >
+                                <div class="invalid-feedback">
+                                  Please fill in the Jewelry Imag
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-6 col-12">
+                                <label>Recept Image</label>
+                                <input type="file" class="form-control" >
+                                <div class="invalid-feedback">
+                                  Please fill in the Recept Image
+                                </div>
+                              </div>
+                            
+                          </div>
+                          <div class="card-footer text-right">
+                            <button class="btn btn-primary"
+                            
+                            <?php
+                              // Assuming $row['compteled_date'] is in 'Y-m-d' format and $row['completedTime'] is in 'H:i:s' format
+                                $completedDateTime = $row['compteled_date'] . ' ' . $row['completedTime'];
+
+                                // Convert completed date and time to a timestamp
+                                $completedTimestamp = strtotime($completedDateTime);
+
+                                // Get the current timestamp
+                                $currentTimestamp = time();
+
+
+                                if ($currentTimestamp < $completedTimestamp + 86400) { // 86400 seconds = 24 hours
+                                  echo "";
+                              } else {
+                                  echo "disabled";
+                              }
+
+
+                            ?>
+                            
+                            >Save Changes</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
 
           </div>
         

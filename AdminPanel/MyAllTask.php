@@ -311,29 +311,7 @@ $n = 1;
                             >
                                 <form action="./MoreDetails.php" method="post">
                                     <input type="hidden" name="task_id" value="<?php echo $rows['task_id']; ?>">
-                                    <input type="submit" name="complete" value="Update Submitions" class="btn btn-success"
-                                      <?php 
-                                        // Get the task creation datetime from the database
-                                            $createdTime = $rows['date'] . ' ' . $rows['time']; // Combine date and time fields
-
-                                            // Convert to a DateTime object
-                                            $createdDateTime = new DateTime($createdTime);
-
-                                            // Get the current time
-                                            $now = new DateTime();
-
-                                            // Calculate the time difference
-                                            $interval = $now->diff($createdDateTime);
-
-                                            // Check if the difference is less than 24 hours
-                                            if($interval->days == 0 && $interval->h < 24){
-                                              echo '';
-                                            }else{
-                                              echo 'disabled';
-                                            }
-                                      
-                                      ?>
-                                    >
+                                    <input type="submit" name="complete" value="Update Submitions" class="btn btn-success">
                                 </form>
                             </td>
                             
