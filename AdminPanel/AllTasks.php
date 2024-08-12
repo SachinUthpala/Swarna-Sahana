@@ -296,7 +296,7 @@ $n = 0;
                             ?>
                             >
                             
-                            <form action="./CompleteTask.php" method="post">
+                            <form action="./MoreDetails.php" method="post">
                                     <input type="hidden" name="task_id" value="<?php echo $rows['task_id']; ?>">
                                     <input type="submit" name="details" value="More Details" class="btn btn-success">
                                 </form>

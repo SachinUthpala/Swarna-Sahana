@@ -241,9 +241,6 @@ $n = 1;
                       <table class="table table-striped" id="table-1">
                         <thead>
                         <tr>
-                            <th class="text-center">
-                              #
-                            </th>
                             <th>Inquery Number</th>
                             <th>Date</th>
                             <th>Time</th>
@@ -262,9 +259,7 @@ $n = 1;
 
                         <?php while($rows = $result-> fetch_assoc()){ ?>
                           <tr>
-                            <td>
-                              <?php echo $n; ?>
-                            </td>
+                           
                             <td><?php echo $rows['inqueryNumber']; ?></td>
                             <td><?php echo $rows['date']; ?></td>
                             <td><?php echo $rows['time']; ?></td>
@@ -314,8 +309,8 @@ $n = 1;
                             ?>  
                         
                             >
-                                <form action="#" method="post">
-                                    <input type="hidden" name="id" value="<?php echo $rows['task_id']; ?>">
+                                <form action="./MoreDetails.php" method="post">
+                                    <input type="hidden" name="task_id" value="<?php echo $rows['task_id']; ?>">
                                     <input type="submit" name="complete" value="Update Submitions" class="btn btn-success"
                                       <?php 
                                         // Get the task creation datetime from the database

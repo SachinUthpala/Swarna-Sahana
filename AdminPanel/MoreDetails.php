@@ -9,10 +9,7 @@ if(!$_SESSION['UserName'] && !$_SESSION['UserId']){
   header('Location: ../index.html');
 }
 
-$sql = "SELECT * FROM task WHERE `completion` = 2";
-$result = mysqli_query($conn, $sql);
 
-$n = 0;
 
 ?>
 
@@ -98,11 +95,11 @@ $n = 0;
             <li class="dropdown">
               <a href="admin.php" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
-            <li class="dropdown ">
+            <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
                   data-feather="briefcase"></i><span>My Tasks</span></a>
               <ul class="dropdown-menu">
-                <li ><a class="nav-link" href="./MyAllTask.php">All Tasks</a></li>
+                <li ><a class="nav-link" href="#">All Tasks</a></li>
                 <li><a class="nav-link" href="./myCompletedTasks.php">Completed Tasks</a></li>
                 <li><a class="nav-link" href="./myOngoing.php">On Going Task</a></li>
               </ul>
@@ -123,13 +120,13 @@ $n = 0;
                 <li><a class="nav-link" href="./deleteTask.php">Delete Task</a></li>
               </ul>
             </li>
-            <li class="dropdown active">
+            <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
                   data-feather="shopping-bag"></i><span>All Tasks</span></a>
               <ul class="dropdown-menu">
-                <li ><a class="nav-link" href="./AllTasks.php">All Tasks</a></li>
+                <li><a class="nav-link" href="./AllTasks.php">All Tasks</a></li>
                 <li><a class="nav-link" href="./allOngoingTask.php">On Going Task</a></li>
-                <li class="active" ><a class="nav-link" href="">Completed Tasks</a></li>
+                <li><a class="nav-link" href="./allCompletedTask.php">Completed Tasks</a></li>
               </ul>
             </li>
 
@@ -214,106 +211,6 @@ $n = 0;
 
           </div>
         
-          <!-- user create form -->
-          <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Basic DataTables</h4>
-                  </div>
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-striped" id="table-1">
-                        <thead>
-                        <tr>
-                            <th class="text-center">
-                              #
-                            </th>
-                            <th>Inquery Number</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Customer Name</th>
-                            <th>Pnone</th>
-                            <th>Bank/Shop</th>
-                            <th>City</th>
-                            <th>Price</th>
-                            <th>Location</th>
-                            <th>Completion</th>
-                            <th>More Details</th>
-     
-                          </tr>
-                        </thead>
-                        <tbody>
-
-                        <?php while($rows = $result-> fetch_assoc()){ ?>
-                          <tr>
-                            <td>
-                              <?php echo $n; ?>
-                            </td>
-                            <td><?php echo $rows['inqueryNumber']; ?></td>
-                            <td><?php echo $rows['date']; ?></td>
-                            <td><?php echo $rows['time']; ?></td>
-                            <td><?php echo $rows['customerName']; ?></td>
-                            <td><?php echo $rows['Phone']; ?></td>
-                            <td><?php echo $rows['bank_shop']; ?></td>
-                            <td><?php echo $rows['city']; ?></td>
-                            <td><?php echo $rows['enterPrice']; ?></td>
-                            <td><a href="<?php echo $rows['location']; ?>" target=" ">Map</a></td>
-                            <td>
-                                <?php
-                                    if($rows['completion'] == 2) {
-                                        echo "<p style='color:green;font-weight:bold;'>Completed</p>";
-                                    }else if($rows['completion'] == 0){
-                                        echo "<p style='color:#ffa800;font-weight:bold;'>OnGoing</p>";
-                                    }else if($rows['completion'] == 1){
-                                        echo "<p style='color:0019ff;font-weight:bold;'>Pending</p>";
-                                    }else if($rows['completion'] == 3){
-                                        echo "<p style='color:red;font-weight:bold;'>Canceled</p>";
-                                    }
-                                ?>
-                            </td>
-                            
-                            <td 
-                            <?php
-                              if($rows['completion'] == 0){
-                                echo "style='display:block;'";
-                              }else{
-                                echo "style='display:none;'";
-                              }
-                            ?>
-                            >
-                            <p style='color:red;font-weight:bold;'>Not Completed</p>
-                            </td>
-
-                            <td 
-                            <?php
-                              if($rows['completion'] == 2){
-                                echo "style='display:block;'";
-                              }else{
-                                echo "style='display:none;'";
-                              }
-                            ?>
-                            >
-                            
-                            <form action="./MoreDetails.php" method="post">
-                                    <input type="hidden" name="task_id" value="<?php echo $rows['task_id']; ?>">
-                                    <input type="submit" name="details" value="More Details" class="btn btn-success">
-                                </form>
-
-                            </td>
-                           
-                          </tr>
-                          <?php 
-                            $n++;
-                        } ?>
-                          
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           
         
           
@@ -416,7 +313,7 @@ $n = 0;
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          <a href="#">Sachin Gunasekara</a></a>
+          <a href="https://github.com/SachinUthpala/">Sachin Gunasekara</a></a>
         </div>
         <div class="footer-right">
         </div>
