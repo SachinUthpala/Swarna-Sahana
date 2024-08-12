@@ -305,7 +305,7 @@ $n = 1;
                             ?>
 
                             >
-                                <form action="" method="post">
+                                <form action="../DbActions/Tasks/deleteTask.php" method="post">
                                     <input type="hidden" name="delete_id" value="<?php echo $rows['task_id']; ?>">
                                     <button type="submit" name="delete" class="btn btn-danger">Delete</button>
                                </form>
