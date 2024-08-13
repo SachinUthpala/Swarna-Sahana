@@ -284,6 +284,7 @@ $nonadminUsers = $result_nonAdmin->num_rows ;
                         <select id="inputState" class="form-control" name="adminAcc">
                           <option value="0">Normal User</option>
                           <option value="1">Admin User</option>
+                          <option value="2">Super Admin</option>
                         </select>
                       </div>
 
