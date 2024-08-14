@@ -1,14 +1,27 @@
 <?php
 
+
 require_once '../DbActions/Db.conn.php';
 session_start();
 error_reporting(0);
-
+date_default_timezone_set("Asia/Colombo");
 
 if(!$_SESSION['UserName'] && !$_SESSION['UserId']){
   header('Location: ../index.html');
 }
 
+
+$userId = (int)$_SESSION['UserId'];
+
+$stmt = $conn->prepare("SELECT * FROM `task` WHERE `select_user` = ?");
+$stmt->bind_param("i", $userId); // 'i' denotes the type integer for $userId
+
+$stmt->execute();
+
+// Get the result of the query
+$result = $stmt->get_result();
+
+// Fetch the number of rows
 
 
 $TotalUsers = "SELECT * FROM users";
@@ -120,16 +133,34 @@ $allCompleted = $result_completed->num_rows ;
             <li class="dropdown active">
               <a href="admin.php" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
-            <li class="dropdown">
+            <li class="dropdown"
+            <?php
+                  if($_SESSION['AdminAccess'] == 2) {
+                    echo 'style="display:none;"';
+                  }
+                ?>
+            >
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="briefcase"></i><span>My Tasks</span></a>
+                  data-feather="briefcase"
+                    <?php
+                  if($_SESSION['AdminAccess'] == 2) {
+                    echo 'style="display:none;"';
+                  }
+                ?>
+                  ></i><span>My Tasks</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="./MyAllTask.php">All Tasks</a></li>
                 <li><a class="nav-link" href="./myCompletedTasks.php">Completed Tasks</a></li>
                 <li><a class="nav-link" href="./myOngoing.php">On Going Task</a></li>
               </ul>
             </li>
-            <li class="dropdown">
+            <li class="dropdown"
+            <?php
+                  if($_SESSION['AdminAccess'] == 2) {
+                    echo 'style="display:none;"';
+                  }
+                ?>
+            >
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="command"></i><span>Expences</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="">Your Expences</a></li>
@@ -137,42 +168,26 @@ $allCompleted = $result_completed->num_rows ;
             </li>
             
             <li class="menu-header"
-              <?php
-                if($_SESSION['AdminAccess'] != 1) {
+            <?php
+                if( $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
             >Task Functions</li>
             <li class="dropdown"
             <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if( $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
-                }
-
-                if($_SESSION['AdminAccess'] == 2) {
-                  echo 'style="display:block;"';
                 }
               ?>
             >
               <a href="#" class="menu-toggle nav-link has-dropdown"
-              <?php
-                if($_SESSION['AdminAccess'] != 1 ) {
-                  echo 'style="display:none;"';
-                }
-
-                if($_SESSION['AdminAccess'] == 2) {
-                  echo 'style="display:block;"';
-                }
-              ?>
+                
               ><i data-feather="copy"></i><span>Main Functions</span></a>
               <ul class="dropdown-menu"
               <?php
-                if($_SESSION['AdminAccess'] != 1  ) {
+                if( $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
-                }
-
-                if($_SESSION['AdminAccess'] == 2) {
-                  echo 'style="display:block;"';
                 }
               ?>
               >
@@ -184,7 +199,7 @@ $allCompleted = $result_completed->num_rows ;
 
             <li class="dropdown"
             <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if( $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
@@ -192,11 +207,13 @@ $allCompleted = $result_completed->num_rows ;
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
                   data-feather="shopping-bag"></i><span>All Tasks</span></a>
               <ul class="dropdown-menu"
+             
               <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if( $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
+              
               >
                 <li><a class="nav-link" href="./AllTasks.php">All Tasks</a></li>
                 <li><a class="nav-link" href="./allOngoingTask.php">On Going Task</a></li>
@@ -206,14 +223,14 @@ $allCompleted = $result_completed->num_rows ;
 
             <li class="menu-header"
             <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if($_SESSION['AdminAccess'] == 2 || $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
             >User Functions</li>
             <li class="dropdown"
             <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if($_SESSION['AdminAccess'] == 2 || $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
@@ -228,24 +245,16 @@ $allCompleted = $result_completed->num_rows ;
 
             <li class="dropdown"
             <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if($_SESSION['AdminAccess'] == 2 || $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
             >
               <a href="#" class="menu-toggle nav-link has-dropdown"
-              <?php
-                if($_SESSION['AdminAccess'] != 1) {
-                  echo 'style="display:none;"';
-                }
-              ?>
+             
               ><i data-feather="copy"></i><span> All Users</span></a>
               <ul class="dropdown-menu"
-              <?php
-                if($_SESSION['AdminAccess'] != 1) {
-                  echo 'style="display:none;"';
-                }
-              ?>
+             
               >
                 <li><a class="nav-link" href="./allUsers.php">All Users</a></li>
                 <li><a class="nav-link" href="./adminUsers.php">Admin Users</a></li>
@@ -265,7 +274,13 @@ $allCompleted = $result_completed->num_rows ;
       <div class="main-content">
         <section class="section">
 
-        <div class="row ">
+        <div class="row "
+        <?php
+                if($_SESSION['AdminAccess'] == 2 || $_SESSION['AdminAccess'] == 0) {
+                  echo 'style="display:none;"';
+                }
+              ?>
+        >
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <div class="card">
                 <div class="card-statistic-4">
@@ -373,7 +388,13 @@ $allCompleted = $result_completed->num_rows ;
 
           </div>
           
-          <div class="row ">
+          <div class="row "
+          <?php
+                if($_SESSION['AdminAccess'] == 2 || $_SESSION['AdminAccess'] == 0) {
+                  echo 'style="display:none;"';
+                }
+              ?>
+          >
 
               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-6">
                 <div class="card">
@@ -451,6 +472,110 @@ $allCompleted = $result_completed->num_rows ;
             
 
           </div>
+
+          <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Basic DataTables</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>
+                        <tr>
+                            <th>Inquery Number</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Customer Name</th>
+                            <th>Pnone</th>
+                            <th>Bank/Shop</th>
+                            <th>City</th>
+                            <th>Price</th>
+                            <th>Location</th>
+                            <th>Completion</th>
+                            <th>Complete Now</th>
+     
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php while($rows = $result-> fetch_assoc()){ ?>
+                          <tr>
+                           
+                            <td><?php echo $rows['inqueryNumber']; ?></td>
+                            <td><?php echo $rows['date']; ?></td>
+                            <td><?php echo $rows['time']; ?></td>
+                            <td><?php echo $rows['customerName']; ?></td>
+                            <td><?php echo $rows['Phone']; ?></td>
+                            <td><?php echo $rows['bank_shop']; ?></td>
+                            <td><?php echo $rows['city']; ?></td>
+                            <td><?php echo $rows['enterPrice']; ?></td>
+                            <td><a href="<?php echo $rows['location']; ?>">Map</a></td>
+                            <td>
+                                <?php
+                                    if($rows['completion'] == 2) {
+                                        echo "<p style='color:green;font-weight:bold;'>Completed</p>";
+                                    }else if($rows['completion'] == 0){
+                                        echo "<p style='color:#ffa800;font-weight:bold;'>OnGoing</p>";
+                                    }else if($rows['completion'] == 1){
+                                        echo "<p style='color:0019ff;font-weight:bold;'>Pending</p>";
+                                    }else if($rows['completion'] == 3){
+                                        echo "<p style='color:red;font-weight:bold;'>Canceled</p>";
+                                    }
+                                ?>
+                            </td>
+                            
+                            <td 
+                            <?php
+                              if($rows['completion'] == 0){
+                                echo "style='display:block;'";
+                              }else{
+                                echo "style='display:none;'";
+                              }
+                            ?>
+                            >
+                                <form action="./CompleteTask.php" method="post">
+                                    <input type="hidden" name="task_id" value="<?php echo $rows['task_id']; ?>">
+                                    <input type="submit" name="complete" value="Complete Now" class="btn btn-success">
+                                </form>
+                            </td>
+
+                            <td
+                            <?php
+
+                              if($rows['completion'] == 2){
+                                echo "style='display:block;'";
+                              }else{
+                                echo "style='display:none;'";
+                              }
+                            ?>  
+                        
+                            >
+                                <form action="./MoreDetails.php" method="post">
+                                    <input type="hidden" name="task_id" value="<?php echo $rows['task_id']; ?>">
+                                    <input type="submit" name="complete" value="Update Submitions" class="btn btn-success">
+                                </form>
+                            </td>
+                            
+                            
+                            
+                                    
+                           
+                            
+                           
+                          </tr>
+                          <?php 
+                            $n++;
+                        } ?>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           
         

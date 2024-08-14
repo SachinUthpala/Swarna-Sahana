@@ -110,19 +110,37 @@ $n = 1;
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Main</li>
-            <li class="dropdown">
+            <li class="dropdown active">
               <a href="admin.php" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
-            <li class="dropdown active">
+            <li class="dropdown"
+            <?php
+                  if($_SESSION['AdminAccess'] == 2) {
+                    echo 'style="display:none;"';
+                  }
+                ?>
+            >
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="briefcase"></i><span>My Tasks</span></a>
+                  data-feather="briefcase"
+                    <?php
+                  if($_SESSION['AdminAccess'] == 2) {
+                    echo 'style="display:none;"';
+                  }
+                ?>
+                  ></i><span>My Tasks</span></a>
               <ul class="dropdown-menu">
-                <li ><a class="nav-link" href="./MyAllTask.php">All Tasks</a></li>
-                <li ><a class="nav-link" href="./myCompletedTasks.php">Completed Tasks</a></li>
-                <li class="active"><a class="nav-link" href="">On Going Task</a></li>
+                <li><a class="nav-link" href="./MyAllTask.php">All Tasks</a></li>
+                <li><a class="nav-link" href="./myCompletedTasks.php">Completed Tasks</a></li>
+                <li><a class="nav-link" href="./myOngoing.php">On Going Task</a></li>
               </ul>
             </li>
-            <li class="dropdown">
+            <li class="dropdown"
+            <?php
+                  if($_SESSION['AdminAccess'] == 2) {
+                    echo 'style="display:none;"';
+                  }
+                ?>
+            >
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="command"></i><span>Expences</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="">Your Expences</a></li>
@@ -131,22 +149,24 @@ $n = 1;
             
             <li class="menu-header"
             <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if( $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
             >Task Functions</li>
             <li class="dropdown"
             <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if( $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
             >
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="copy"></i><span>Main Functions</span></a>
+              <a href="#" class="menu-toggle nav-link has-dropdown"
+                
+              ><i data-feather="copy"></i><span>Main Functions</span></a>
               <ul class="dropdown-menu"
               <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if( $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
@@ -156,27 +176,24 @@ $n = 1;
                 <li><a class="nav-link" href="./deleteTask.php">Delete Task</a></li>
               </ul>
             </li>
+
             <li class="dropdown"
             <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if( $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
             >
-              <a href="#" class="menu-toggle nav-link has-dropdown"
-              <?php
-                if($_SESSION['AdminAccess'] != 1) {
-                  echo 'style="display:none;"';
-                }
-              ?>
-              ><i
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i
                   data-feather="shopping-bag"></i><span>All Tasks</span></a>
               <ul class="dropdown-menu"
+             
               <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if( $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
+              
               >
                 <li><a class="nav-link" href="./AllTasks.php">All Tasks</a></li>
                 <li><a class="nav-link" href="./allOngoingTask.php">On Going Task</a></li>
@@ -186,60 +203,49 @@ $n = 1;
 
             <li class="menu-header"
             <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if($_SESSION['AdminAccess'] == 2 || $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
             >User Functions</li>
-            <li class="dropdown ">
-              <a href="#" class="menu-toggle nav-link has-dropdown"
-              <?php
-                if($_SESSION['AdminAccess'] != 1) {
+            <li class="dropdown"
+            <?php
+                if($_SESSION['AdminAccess'] == 2 || $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
-              ><i data-feather="copy"></i><span>Main Functions</span></a>
-              <ul class="dropdown-menu"
-              <?php
-                if($_SESSION['AdminAccess'] != 1) {
-                  echo 'style="display:none;"';
-                }
-              ?>
-              >
-                <li class=""><a class="nav-link" href="./createUser.php">Create User</a></li>
-                <li><a class="nav-link" href="">Update User</a></li>
+            >
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="copy"></i><span>Main Functions</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="./createUser.php">Create User</a></li>
+                <li><a class="nav-link" href="badge.html">Update User</a></li>
                 <li><a class="nav-link" href="./DeleteUser.php">Delete User</a></li>
               </ul>
             </li>
 
-            <li class="dropdown "
+            <li class="dropdown"
             <?php
-                if($_SESSION['AdminAccess'] != 1) {
+                if($_SESSION['AdminAccess'] == 2 || $_SESSION['AdminAccess'] == 0) {
                   echo 'style="display:none;"';
                 }
               ?>
             >
               <a href="#" class="menu-toggle nav-link has-dropdown"
-              <?php
-                if($_SESSION['AdminAccess'] != 1) {
-                  echo 'style="display:none;"';
-                }
-              ?>
+             
               ><i data-feather="copy"></i><span> All Users</span></a>
               <ul class="dropdown-menu"
-              <?php
-                if($_SESSION['AdminAccess'] != 1) {
-                  echo 'style="display:none;"';
-                }
-              ?>
+             
               >
-                <li ><a class="nav-link" href="./allUsers.php">All Users</a></li>
+                <li><a class="nav-link" href="./allUsers.php">All Users</a></li>
                 <li><a class="nav-link" href="./adminUsers.php">Admin Users</a></li>
                 <li><a class="nav-link" href="./nonAdminUsers.php">Non Admin Users</a></li>
               </ul>
             </li>
 
-
+            
+            
+            
+          
             
           </ul>
         </aside>
