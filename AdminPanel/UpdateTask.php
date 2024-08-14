@@ -3,17 +3,25 @@
 require_once '../DbActions/Db.conn.php';
 session_start();
 error_reporting(0);
-date_default_timezone_set("Asia/Colombo");
 
 if(!$_SESSION['UserName'] && !$_SESSION['UserId']){
   header('Location: ../index.html');
 }
 
-$sql = "SELECT * FROM task WHERE `completion` = 0";
-$result = mysqli_query($conn, $sql);
 
-$n = 0;
+$TotalTask = "SELECT * FROM task";
+$result_total = $conn->query($TotalTask);
+$AllTasks = $result_total->num_rows ; 
 
+$sql_onGoing = "SELECT * FROM task WHERE `completion` = 0";
+$result_ongoing = $conn->query($sql_onGoing);
+$allOngoing = $result_ongoing->num_rows ; 
+
+$sql_completed = "SELECT * FROM task WHERE `completion` = 2";
+$result_completed = $conn->query($sql_completed);
+$allCompleted = $result_completed->num_rows ; 
+
+$n = 1;
 
 ?>
 
@@ -158,7 +166,7 @@ $n = 0;
               ?>
               >
                 <li><a class="nav-link" href="./createTask.php">Create Task</a></li>
-                <li><a class="nav-link" href="badge.html">Update Task</a></li>
+                <li><a class="nav-link" href="./UpdateTask.php">Update Task</a></li>
                 <li><a class="nav-link" href="./deleteTask.php">Delete Task</a></li>
               </ul>
             </li>
@@ -204,7 +212,7 @@ $n = 0;
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="copy"></i><span>Main Functions</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="./createUser.php">Create User</a></li>
-                <li><a class="nav-link" href="./UpdateTask.php">Update User</a></li>
+                <li><a class="nav-link" href="badge.html">Update User</a></li>
                 <li><a class="nav-link" href="./DeleteUser.php">Delete User</a></li>
               </ul>
             </li>
@@ -239,7 +247,7 @@ $n = 0;
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-            
+
           <div class="row ">
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <div class="card">
@@ -248,9 +256,9 @@ $n = 0;
                     <div class="row ">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                         <div class="card-content">
-                          <h5 class="font-15">Date</h5>
-                          <h2 class="mb-3 font-18"><?php echo  date('Y-m-d'); ?></h2>
-                          <p class="mb-0"><span class="col-green">Have a good Day</span></p>
+                          <h5 class="font-15">All Users</h5>
+                          <h2 class="mb-3 font-18"><?php echo $AllTasks; ?></h2>
+                          <p class="mb-0"><span class="col-green">100%</span> Total Tasks</p>
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -271,10 +279,15 @@ $n = 0;
                     <div class="row ">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                         <div class="card-content">
-                          <h5 class="font-15"> Time</h5>
-                          <h2 class="mb-3 font-18"><?php echo date('H:i:s'); ?></h2>
+                          <h5 class="font-15"> All Completed Task</h5>
+                          <h2 class="mb-3 font-18"><?php echo $allCompleted; ?></h2>
                           <p class="mb-0"><span class="col-orange">
-                          
+                          <?php
+                            $adminP = $allCompleted/$AllTasks*100;
+                            echo (int)$adminP.'%';
+                            // echo $adminUsers;
+                            // echo $AllUsers;
+                          ?>
                           </span> From Total Users</p>
                         </div>
                       </div>
@@ -289,7 +302,34 @@ $n = 0;
               </div>
             </div>
 
-            
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="card">
+                <div class="card-statistic-4">
+                  <div class="align-items-center justify-content-between">
+                    <div class="row ">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                        <div class="card-content">
+                          <h5 class="font-15">All On Going Task</h5>
+                          <h2 class="mb-3 font-18"><?php echo $allOngoing;   ?></h2>
+                          <p class="mb-0"><span class="col-green">
+                          <?php
+                            $normalP = $allOngoing/$AllTasks*100;
+                            echo (int)$normalP.'%';
+                          ?>
+                          </span>
+                          From Total Users</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                        <div class="banner-img">
+                          <img src="assets/img/banner/2.png" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
         
@@ -298,7 +338,7 @@ $n = 0;
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Basic DataTables</h4>
+                    <h4>Delete Task</h4>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -312,18 +352,15 @@ $n = 0;
                             <th>Date</th>
                             <th>Time</th>
                             <th>Customer Name</th>
-                            <th>Pnone</th>
-                            <th>Bank/Shop</th>
-                            <th>City</th>
+                            <th>Phone</th>
+                            <th>Bank</th>
                             <th>Price</th>
-                            <th>Location</th>
-                            <th>Completion</th>
-     
+                            <th>Delete</th>
                           </tr>
                         </thead>
                         <tbody>
 
-                        <?php while($rows = $result-> fetch_assoc()){ ?>
+                        <?php while($rows = $result_total-> fetch_assoc()){ ?>
                           <tr>
                             <td>
                               <?php echo $n; ?>
@@ -334,22 +371,31 @@ $n = 0;
                             <td><?php echo $rows['customerName']; ?></td>
                             <td><?php echo $rows['Phone']; ?></td>
                             <td><?php echo $rows['bank_shop']; ?></td>
-                            <td><?php echo $rows['city']; ?></td>
                             <td><?php echo $rows['enterPrice']; ?></td>
-                            <td><a href="<?php echo $rows['location']; ?>" target=" ">Map</a></td>
-                            <td>
-                                <?php
-                                    if($rows['completion'] == 2) {
-                                        echo "<p style='color:green;font-weight:bold;'>Completed</p>";
-                                    }else if($rows['completion'] == 0){
-                                        echo "<p style='color:#ffa800;font-weight:bold;'>OnGoing</p>";
-                                    }else if($rows['completion'] == 1){
-                                        echo "<p style='color:0019ff;font-weight:bold;'>Pending</p>";
-                                    }else if($rows['completion'] == 3){
-                                        echo "<p style='color:red;font-weight:bold;'>Canceled</p>";
-                                    }
-                                ?>
+                            <td
+                            
+                            <?php
+                             if($rows['completion'] == 0){
+                              echo 'style="display:block;"';
+                             }else{
+                              echo 'style="display:none;"';
+                             }
+                            ?>
+
+                            >
+                                <form action="" method="post">
+                                    <input type="hidden" name="delete_id" value="<?php echo $rows['task_id']; ?>">
+                                    <button type="submit" name="Update" class="btn btn-danger">Update</button>
+                               </form>
                             </td>
+
+                            <td
+                            
+                            
+                            
+                           
+                          
+                          
                           </tr>
                           <?php 
                             $n++;
@@ -464,7 +510,7 @@ $n = 0;
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          <a href="#">Sachin Gunasekara</a></a>
+          <a href="https://github.com/SachinUthpala/">Sachin Gunasekara</a></a>
         </div>
         <div class="footer-right">
         </div>
@@ -503,19 +549,19 @@ $n = 0;
 
   <?php
 
-if($_SESSION['userCreated'] == 1){
+if($_SESSION['taskDeleted'] == 1){
     echo '<script>
             Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "User Created Sucessfully",
+            title: "Task Deleted Sucessfully",
             showConfirmButton: false,
             timer: 1500
             });
 
         </script>' ;
 
-        $_SESSION['userCreated'] = null;
+        $_SESSION['taskDeleted'] = null;
 }
 
 

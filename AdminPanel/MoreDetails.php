@@ -210,7 +210,7 @@ $row = $result->fetch_assoc();
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="copy"></i><span>Main Functions</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="./createUser.php">Create User</a></li>
-                <li><a class="nav-link" href="badge.html">Update User</a></li>
+                <li><a class="nav-link" href="./UpdateTask.php">Update User</a></li>
                 <li><a class="nav-link" href="./DeleteUser.php">Delete User</a></li>
               </ul>
             </li>

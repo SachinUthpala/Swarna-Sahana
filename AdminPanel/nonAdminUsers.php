@@ -166,7 +166,7 @@ $n = 1;
               ?>
               >
                 <li><a class="nav-link" href="./createTask.php">Create Task</a></li>
-                <li><a class="nav-link" href="badge.html">Update Task</a></li>
+                <li><a class="nav-link" href="./UpdateTask.php">Update Task</a></li>
                 <li><a class="nav-link" href="./deleteTask.php">Delete Task</a></li>
               </ul>
             </li>
