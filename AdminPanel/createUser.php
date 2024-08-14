@@ -141,8 +141,28 @@ $nonadminUsers = $result_nonAdmin->num_rows ;
               </ul>
             </li>
 
-            <li class="menu-header">User Functions</li>
-            <li class="dropdown active">
+            <li class="menu-header"
+            
+            <?php
+
+                if($_SESSION['AdminAccess'] == 2) {
+                  echo 'style="display:none;"';
+                }
+
+              ?>
+
+            >User Functions</li>
+            <li class="dropdown active"
+            
+            <?php
+
+                if($_SESSION['AdminAccess'] == 2) {
+                  echo 'style="display:none;"';
+                }
+
+              ?>
+
+            >
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="copy"></i><span>Main Functions</span></a>
               <ul class="dropdown-menu">
                 <li class="active"><a class="nav-link" href="">Create User</a></li>
@@ -151,7 +171,15 @@ $nonadminUsers = $result_nonAdmin->num_rows ;
               </ul>
             </li>
 
-            <li class="dropdown">
+            <li class="dropdown"
+            <?php
+
+                if($_SESSION['AdminAccess'] == 2) {
+                  echo 'style="display:none;"';
+                }
+
+              ?>
+            >
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="copy"></i><span> All Users</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="./allUsers.php">All Users</a></li>
@@ -284,7 +312,7 @@ $nonadminUsers = $result_nonAdmin->num_rows ;
                         <select id="inputState" class="form-control" name="adminAcc">
                           <option value="0">Normal User</option>
                           <option value="1">Admin User</option>
-                          <option value="2">Super Admin</option>
+                          <option value="2">Task Creator</option>
                         </select>
                       </div>
 

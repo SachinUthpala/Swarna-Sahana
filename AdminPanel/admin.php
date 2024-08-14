@@ -145,22 +145,34 @@ $allCompleted = $result_completed->num_rows ;
             >Task Functions</li>
             <li class="dropdown"
             <?php
-                if($_SESSION['AdminAccess'] != 1 || $_SESSION['AdminAccess'] != 2 ) {
+                if($_SESSION['AdminAccess'] != 1) {
                   echo 'style="display:none;"';
+                }
+
+                if($_SESSION['AdminAccess'] == 2) {
+                  echo 'style="display:block;"';
                 }
               ?>
             >
               <a href="#" class="menu-toggle nav-link has-dropdown"
               <?php
-                if($_SESSION['AdminAccess'] != 1 || $_SESSION['AdminAccess'] != 2 ) {
+                if($_SESSION['AdminAccess'] != 1 ) {
                   echo 'style="display:none;"';
+                }
+
+                if($_SESSION['AdminAccess'] == 2) {
+                  echo 'style="display:block;"';
                 }
               ?>
               ><i data-feather="copy"></i><span>Main Functions</span></a>
               <ul class="dropdown-menu"
               <?php
-                if($_SESSION['AdminAccess'] != 1 || $_SESSION['AdminAccess'] != 2 ) {
+                if($_SESSION['AdminAccess'] != 1  ) {
                   echo 'style="display:none;"';
+                }
+
+                if($_SESSION['AdminAccess'] == 2) {
+                  echo 'style="display:block;"';
                 }
               ?>
               >
