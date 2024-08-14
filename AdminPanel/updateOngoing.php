@@ -33,7 +33,7 @@ if(isset($_POST['Update'])){
     $id = (int)$_POST['delete_id'];
     $sql  = "SELECT * FROM task WHERE `task_id` = $id ";
     $result = mysqli_query($conn, $sql);
-    $row = $result->fetch_assoc();
+    $row2 = $result->fetch_assoc();
 }
 
 ?>
@@ -86,6 +86,7 @@ if(isset($_POST['Update'])){
         <ul class="navbar-nav navbar-right">
           
           
+        
           
         <li class="dropdown"><a href="#" data-toggle="dropdown"
               class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="<?php echo $_SESSION['userImage']; ?>"
@@ -280,48 +281,48 @@ if(isset($_POST['Update'])){
                       </div>
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">Inquery Number</label>
-                        <input type="text" class="form-control"  name="Inquery_Number"   value="<?php echo $row['inqueryNumber']; ?>" placeholder="Inquery Number">
+                        <input type="text" class="form-control"  name="Inquery_Number"   value="<?php echo $row2['inqueryNumber']; ?>" placeholder="Inquery Number">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">Date</label>
-                        <input type="date" class="form-control"   value="<?php echo $row['date']; ?>" name="date" placeholder="date">
+                        <input type="date" class="form-control"   value="<?php echo $row2['date']; ?>" name="date" placeholder="date">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="inputPassword4">Time</label>
-                        <input type="time" class="form-control"   value="<?php echo $row['time']; ?>" name="time" placeholder="time">
+                        <input type="time" class="form-control"   value="<?php echo $row2['time']; ?>" name="time" placeholder="time">
                       </div>
 
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">Customer Name</label>
-                        <input type="text" class="form-control"   value="<?php echo $row['customerName']; ?>" name="customer_name" placeholder="Customer Name">
+                        <input type="text" class="form-control"   value="<?php echo $row2['customerName']; ?>" name="customer_name" placeholder="Customer Name">
                       </div>
 
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">Phone</label>
-                        <input type="text" class="form-control"   value="<?php echo $row['Phone']; ?>" name="phone" placeholder="Phone Number">
+                        <input type="text" class="form-control"   value="<?php echo $row2['Phone']; ?>" name="phone" placeholder="Phone Number">
                       </div>
 
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">Bank Or Shop</label>
-                        <input type="text" class="form-control"   value="<?php echo $row['bank_shop']; ?>" name="bank" placeholder="Bank Or Shop">
+                        <input type="text" class="form-control"   value="<?php echo $row2['bank_shop']; ?>" name="bank" placeholder="Bank Or Shop">
                       </div>
 
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">City</label>
-                        <input type="text" class="form-control"   value="<?php echo $row['city']; ?>" name="city" placeholder="City">
+                        <input type="text" class="form-control"   value="<?php echo $row2['city']; ?>" name="city" placeholder="City">
                       </div>
 
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">Price</label>
-                        <input type="text" class="form-control"  value="<?php echo $row['enterPrice']; ?>" name="price" placeholder="Bank Or Shop">
+                        <input type="text" class="form-control"  value="<?php echo $row2['enterPrice']; ?>" name="price" placeholder="Bank Or Shop">
                       </div>
 
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">Location</label>
-                        <input type="text" class="form-control" value="<?php echo $row['location']; ?>" name="location" placeholder="Location">
+                        <input type="text" class="form-control" value="<?php echo $row2['location']; ?>" name="location" placeholder="Location">
                       </div>
 
-                      <input type="text" class="form-control" value="<?php echo $row['task_id ']; ?>" name="id" placeholder="Location">
+                      <input type="text" class="form-control" value="<?php echo $row2['task_id ']; ?>" name="id" placeholder="Location">
                       
 
 
