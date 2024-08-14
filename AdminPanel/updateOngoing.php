@@ -23,6 +23,19 @@ $allCompleted = $result_completed->num_rows ;
 
 $n = 1;
 
+$TotalUsers = "SELECT * FROM users";
+$result_total = $conn->query($TotalUsers);
+$AllUsers = $result_total->num_rows ; 
+
+
+
+if(isset($_POST['Update'])){
+    $id = (int)$_POST['delete_id'];
+    $sql  = "SELECT * FROM task WHERE `task_id` = $id ";
+    $result = mysqli_query($conn, $sql);
+    $row = $result->fetch_assoc();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -248,167 +261,88 @@ $n = 1;
       <div class="main-content">
         <section class="section">
 
-          <div class="row ">
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <div class="card">
-                <div class="card-statistic-4">
-                  <div class="align-items-center justify-content-between">
-                    <div class="row ">
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
-                        <div class="card-content">
-                          <h5 class="font-15">All Users</h5>
-                          <h2 class="mb-3 font-18"><?php echo $AllTasks; ?></h2>
-                          <p class="mb-0"><span class="col-green">100%</span> Total Tasks</p>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
-                        <div class="banner-img">
-                          <img src="assets/img/banner/1.png" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <div class="card">
-                <div class="card-statistic-4">
-                  <div class="align-items-center justify-content-between">
-                    <div class="row ">
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
-                        <div class="card-content">
-                          <h5 class="font-15"> All Completed Task</h5>
-                          <h2 class="mb-3 font-18"><?php echo $allCompleted; ?></h2>
-                          <p class="mb-0"><span class="col-orange">
-                          <?php
-                            $adminP = $allCompleted/$AllTasks*100;
-                            echo (int)$adminP.'%';
-                            // echo $adminUsers;
-                            // echo $AllUsers;
-                          ?>
-                          </span> From Total Users</p>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
-                        <div class="banner-img">
-                          <img src="assets/img/banner/2.png" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <div class="card">
-                <div class="card-statistic-4">
-                  <div class="align-items-center justify-content-between">
-                    <div class="row ">
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
-                        <div class="card-content">
-                          <h5 class="font-15">All On Going Task</h5>
-                          <h2 class="mb-3 font-18"><?php echo $allOngoing;   ?></h2>
-                          <p class="mb-0"><span class="col-green">
-                          <?php
-                            $normalP = $allOngoing/$AllTasks*100;
-                            echo (int)$normalP.'%';
-                          ?>
-                          </span>
-                          From Total Users</p>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
-                        <div class="banner-img">
-                          <img src="assets/img/banner/2.png" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        
-          <!-- user create form -->
-          <div class="row">
-              <div class="col-12">
-                <div class="card">
+         
+        <div class="card">
                   <div class="card-header">
-                    <h4>Delete Task</h4>
+                    <h4>Update  Task</h4>
                   </div>
+                  <form action="../DbActions/Tasks/updateOnGoing.php" method="post">
                   <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-striped" id="table-1">
-                        <thead>
-                        <tr>
-                            <th class="text-center">
-                              #
-                            </th>
-                            <th>Inquery Number</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Customer Name</th>
-                            <th>Phone</th>
-                            <th>Bank</th>
-                            <th>Price</th>
-                            <th>Delete</th>
-                          </tr>
-                        </thead>
-                        <tbody>
+                    <div class="form-row">
 
-                        <?php while($rows = $result_total-> fetch_assoc()){ ?>
-                          <tr>
-                            <td>
-                              <?php echo $n; ?>
-                            </td>
-                            <td><?php echo $rows['inqueryNumber']; ?></td>
-                            <td><?php echo $rows['date']; ?></td>
-                            <td><?php echo $rows['time']; ?></td>
-                            <td><?php echo $rows['customerName']; ?></td>
-                            <td><?php echo $rows['Phone']; ?></td>
-                            <td><?php echo $rows['bank_shop']; ?></td>
-                            <td><?php echo $rows['enterPrice']; ?></td>
-                            <td
-                            
-                            <?php
-                             if($rows['completion'] == 0){
-                              echo 'style="display:block;"';
-                             }else{
-                              echo 'style="display:none;"';
-                             }
-                            ?>
+                    <div class="form-group col-md-4">
+                        <label for="inputState">Select User</label>
+                        <select id="inputState" class="form-control" name="userId">
+                            <?php while($row = $result_total->fetch_assoc()){ ?>
+                          <option value="<?php echo $row['UserId']; ?>"><?php echo $row['UserName']; ?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Inquery Number</label>
+                        <input type="text" class="form-control"  name="Inquery_Number"   value="<?php echo $row['inqueryNumber']; ?>" placeholder="Inquery Number">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Date</label>
+                        <input type="date" class="form-control"   value="<?php echo $row['date']; ?>" name="date" placeholder="date">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Time</label>
+                        <input type="time" class="form-control"   value="<?php echo $row['time']; ?>" name="time" placeholder="time">
+                      </div>
 
-                            >
-                                <form action="./updateOngoing.php" method="post">
-                                    <input type="hidden" name="delete_id" value="<?php echo $rows['task_id']; ?>">
-                                    <button type="submit" name="Update" class="btn btn-danger">Update</button>
-                               </form>
-                            </td>
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Customer Name</label>
+                        <input type="text" class="form-control"   value="<?php echo $row['customerName']; ?>" name="customer_name" placeholder="Customer Name">
+                      </div>
 
-                            <td
-                            
-                            
-                            
-                           
-                          
-                          
-                          </tr>
-                          <?php 
-                            $n++;
-                        } ?>
-                          
-                        </tbody>
-                      </table>
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Phone</label>
+                        <input type="text" class="form-control"   value="<?php echo $row['Phone']; ?>" name="phone" placeholder="Phone Number">
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Bank Or Shop</label>
+                        <input type="text" class="form-control"   value="<?php echo $row['bank_shop']; ?>" name="bank" placeholder="Bank Or Shop">
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">City</label>
+                        <input type="text" class="form-control"   value="<?php echo $row['city']; ?>" name="city" placeholder="City">
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Price</label>
+                        <input type="text" class="form-control"  value="<?php echo $row['enterPrice']; ?>" name="price" placeholder="Bank Or Shop">
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Location</label>
+                        <input type="text" class="form-control" value="<?php echo $row['location']; ?>" name="location" placeholder="Location">
+                      </div>
+
+                      <input type="text" class="form-control" value="<?php echo $row['task_id ']; ?>" name="id" placeholder="Location">
+                      
+
+
+
+                    </div>
+                   
+                    
+                    <div class="form-group mb-0">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                          I will agree with conditions
+                        </label>
+                      </div>
                     </div>
                   </div>
+                  <div class="card-footer">
+                    <button class="btn btn-primary" name="createTask">Submit</button>
+                  </div>
+                  </form>
                 </div>
-              </div>
-            </div>
-          
         
           
         </section>
