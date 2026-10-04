@@ -1,106 +1,353 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Swarna Sahana</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
-</head>
-<body style="background-color: #666666;">
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form" method="post" action="./DbActions/LoginAndSignUp/signIn.php">
-					<span class="login100-form-title p-b-43">
-						Login to Swarna Sahana
-					</span>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" >
-						<span class="focus-input100"></span>
-						<span class="label-input100">Email</span>
-					</div>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass" >
-						<span class="focus-input100"></span>
-						<span class="label-input100">Password</span>
-					</div>
 
-					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
+  <head>
 
-						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
-							</a>
-						</div>
-					</div>
-			
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" name="logIn">
-							Login
-						</button>
-					</div>
-					
-				</form>
+    <title>Swarna Sahana</title>
 
-				<div class="login100-more" style="background-image: url('images/bg-01.jpg');">
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-	
-	
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
-<!-- ============================================================================================= -->
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!--
 
+TemplateMo 570 Chain App Dev
+
+https://templatemo.com/tm-570-chain-app-dev
+
+-->
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/templatemo-chain-app-dev.css">
+    <link rel="stylesheet" href="assets/css/animated.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo" >
+              <img src="assets/images/logo-removebg-preview.png" class="logoimg" alt="ස්වර්ණ සහන">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="#services">Services</a></li>
+              <li class="scroll-to-section"><a href="#about">About</a></li>
+              <li class="scroll-to-section"><a href="#about">Contact Us</a></li>
+              <li></li>
+            </ul>        
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+  
+  <div id="modal" class="popupContainer" style="display:none;">
+    <div class="popupHeader">
+        <span class="header_title">Login</span>
+        <span class="modal_close"><i class="fa fa-times"></i></span>
+    </div>
+
+    <section class="popupBody">
+        <!-- Social Login -->
+        <div class="social_login">
+            <div class="">
+                <a href="#" class="social_box fb">
+                    <span class="icon"><i class="fab fa-facebook"></i></span>
+                    <span class="icon_title">Connect with Facebook</span>
+
+                </a>
+
+                <a href="#" class="social_box google">
+                    <span class="icon"><i class="fab fa-google-plus"></i></span>
+                    <span class="icon_title">Connect with Google</span>
+                </a>
+            </div>
+
+            <div class="centeredText">
+                <span>Or use your Email address</span>
+            </div>
+
+            <div class="action_btns">
+                <div class="one_half"><a href="#" id="login_form" class="btn">Login</a></div>
+                <div class="one_half last"><a href="#" id="register_form" class="btn">Sign up</a></div>
+            </div>
+        </div>
+
+        
+
+
+    </section>
+</div>
+
+  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6 align-self-center">
+              <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h2 style="color: #fff;">ස්වර්ණ සහන <span style="color: #ffae00;">රන් මිතුරු සේවාව</span></h2>
+                    <p style="font-weight: 600;font-size: 20px;color: #fff;">අප ආයතනය රජයේ ලියාපදිංචි ආයතනයක් වන නිසා ඔබේ ගණුදෙනුවට උපරිම සුරක්ෂිතභාවයක් ලබා දෙන අතරම සැගවුණ ගාස්තුවලින් තොරව දිනයේ වැඩිම වටිනාකම ඔබ අතට ලබා දෙන බවට අප සහතික වනවා</p>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                <img src="assets/images/logo-removebg-preview.png"  alt="" >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="services" class="services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+            <h4>රන් හා බැදි<em> විශ්වාසනීයම නාමය  </em><br>  “ස්වර්ණ සහන”</h4>
+            <img src="assets/images/heading-line-dec.png" alt="">
+            <p>පොරොන්දු වෙන ගාන සතයක්වත් අඩු නැතිව හරියටම ගෙවන්නේ අපි විතරයි!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="service-item first-service">
+            <div class="icon"></div>
+            <h4>සුරක්ෂිතභාවයක්</h4>
+            <p>අප ආයතනය රජයේ ලියාපදිංචි ආයතනයක් වන නිසා ඔබේ ගනුදෙනුවට උපරිම සුරක්ෂිතතාවයක්.</p>
+            <div class="text-button">
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="service-item second-service">
+            <div class="icon"></div>
+            <h4>බිල්පතක්</h4>
+            <p>ඔබේ සෑම රන් ගනුදෙනුවක් වෙනුවෙන්ම සහතික කරන ලද බිල්පතක්. <br><br></p>
+            <div class="text-button">
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="service-item third-service">
+            <div class="icon"></div>
+            <h4>විශ්වසනීයත්වය</h4>
+            <p>උපරිම විශ්වසනීයත්වය සමග ඔබටම වෙන් වූ අලෙවි නිලදාරී මහතෙක්. <br><br></p>
+            <div class="text-button">
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="service-item fourth-service">
+            <div class="icon"></div>
+            <h4> වැඩිම වටිනාකම</h4>
+            <p>පොරොන්දු වූ මුදල නිසැකවම උකස් ආයතනය තුලදීම ඔබ අතට. <br><br><br> </p>
+            <div class="text-button">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="about" class="about-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="section-heading">
+            <h4> <em> වැඩි විස්තර සදහා .. </em> </h4>
+            <img src="assets/images/heading-line-dec.png" alt="">
+            <p>වැඩි විස්තර සදහා ඔබේ උකස් රිසිට් පතේ ඡායාරූපයක් Messenger හෝ WhatsApp හරහා අප වෙත යොමු කරන්න.</p>
+            <div class="flex" style="display: flex;gap: 20px;">
+              <div class="gradient-button">
+                <a href="https://wa.me/777703306">Whatsapp</a>
+              </div>
+              <div class="gradient-button">
+                <a href="https://m.me/Swarnasahanalk" target=" ">Messenger</a>
+              </div>
+            </div>
+          </div>
+          <div class="section-heading">
+            <h4>අපි ගැන හා <em> අපි කවුද ? </em> </h4>
+            <img src="assets/images/heading-line-dec.png" alt="">
+            <p>අප ආයතනය රජයේ ලියාපදිංචි ආයතනයක් වන නිසා, දැන් ඔබේ රන් ගනුදෙනු වඩාත් සුරක්ෂිතයි.</p>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="box-item">
+                <h4><a href="#">නොබිදුනු විශ්වසය</a></h4>
+                <p>රජයේ ලියාපදිංචි ආයතනයක් වන නිසා ඔබේ ගනුදෙනුවට උපරිම සුරක්ෂිතතාවයක්</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="box-item">
+                <h4><a href="#">ඉක්මන් සේවාව</a></h4>
+                <p>ඔබටම වෙන් වූ අලෙවි නිලදාරී මහතෙක්</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="box-item">
+                <h4><a href="#">මුදල නිසැකවම</a></h4>
+                <p>පොරොන්දු වූ මුදල නිසැකවම උකස් තබා ඇති ආයතනය තුලදීම ඔබ අතට</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="box-item">
+                <h4><a href="#">වැඩිම වටිනාකම</a></h4>
+                <p>සැගවුනු ගාස්තු වලින් තොරව දිනයේ වැඩිම වටිනාකම ඔබ අතට</p>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <p>සැලකිය යුතුයි - අප ආයතනය විසින් කිසිදු අයුරකින් සොරකම් කරන ලද ව්‍යාජ රන් භාණ්ඩ මිලදී නොගන්නා අතර, එසේ කිරීමට උත්සහ දරන්නන් පිලිබදව තොරතුරු එසැනින් ලගම ඇති පොලීසියට දැනුම් දෙනු ලැබේ!</p>
+              <div class="flexcontents" style="display: flex;gap: 20px;">
+                <div class="contents">
+                  <div class="gradient-button">
+                    <a href="#">PV00270906</a>
+                  </div>
+                  <span>රජයේ ලියාපදිංචි අංක </span>
+                </div>
+                <div class="contents" style="text-align: center;align-items: center;">
+                  <div class="gradient-button">
+                    <a href="#">20243JL6005</a>
+                  </div>
+                  <span>මැණික් සහ ස්වර්ණාභරණ <br> අධිකාරියේ ලියාපදිංචි අංක </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="right-image">
+            <img src="assets/images/j2-removebg-preview (1).png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <br><br>
+  <h1 style="color: #ffae00;font-size: 20px;text-align: center;padding: 20px 40px;font-weight: 500;">සැලකිය යුතුයි - අප ආයතනය විසින් කිසිදු අයුරකින් සොරකම් කරන ලද ව්‍යාජ රන් භාණ්ඩ මිලදී නොගන්නා අතර, එසේ කිරීමට උත්සහ දරන්නන් පිලිබදව තොරතුරු එසැනින් ලගම ඇති පොලීසියට දැනුම් දෙනු ලැබේ!</h1>
+  
+
+
+  
+  <footer id="newsletter">
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Contact Us</h4>
+            <p>Swarna Sahana Holding (pvt) ltd <br> 41/2 Negambo Road, Kurunegala </p>
+            <p><a href="#">(077) 770 3306 </a></p>
+            <p><a href="swarnasahanalk@gmail.com" target=" ">swarnasahanalk@gmail.com </a></p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>About Us</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="./Admin/index.php">Team Member</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Instergram</a></li>
+              <li><a href="#">Twitter</a></li>
+            </ul>
+            <ul>
+              <li><a href="./Admin/index.php">App Dev Team</a></li>
+              <li><a href="#">Maintaince</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>ස්වර්ණ සහන </h4>
+            <div class="logo">
+              <img src="assets/images/white-logo.png" alt="">
+            </div>
+            <p>අප ආයතනය රජයේ ලියාපදිංචි ආයතනයක් වන නිසා ඔබේ ගණුදෙනුවට උපරිම සුරක්ෂිතභාවයක් ලබා දෙන අතරම සැගවුණ ගාස්තුවලින් තොරව දිනයේ වැඩිම වටිනාකම ඔබ අතට ලබා දෙන බවට අප සහතික වනවා. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 
+        sweet alert
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  
+
+  <!-- Scripts -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/animation.js"></script>
+  <script src="assets/js/imagesloaded.js"></script>
+  <script src="assets/js/popup.js"></script>
+  <script src="assets/js/custom.js"></script>
 </body>
 </html>
